@@ -11,7 +11,7 @@ public class MyRoutes extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        restConfiguration().component("netty4-http").port(8080);
+        restConfiguration().component("netty4-http").host("0.0.0.0").port(8080);
 
         rest("say")
                 .get("/hello").to("direct:hello")
