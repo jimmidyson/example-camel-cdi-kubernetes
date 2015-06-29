@@ -22,10 +22,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>io.fabric8.examples</groupId>
-  <artifactId>camel-rest</artifactId>
+  <artifactId>example-camel-cdi-kubernetes</artifactId>
   <version>1.0-SNAPSHOT</version>
   <name>Fabric8 :: Examples :: Camel REST</name>
-  <description>RESTful WebService Example using JAX-RS</description>
+  <description>RESTful WebService Example using Camel CDI</description>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -95,6 +95,32 @@
         <version>${exec-maven-plugin.version}</version>
         <configuration>
           <mainClass>org.jboss.weld.environment.se.StartMain</mainClass>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.jolokia</groupId>
+        <artifactId>docker-maven-plugin</artifactId>
+        <version>0.12.0</version>
+        <configuration>
+          <images>
+            <image>
+              <name>example-camel-cdi-kubernetes</name>
+              <build>
+                <from>fabric8/java</from>
+                <assembly>
+                  <descriptorRef>artifact-with-dependencies</descriptorRef>
+                </assembly>
+                <env>
+                  <MAIN>org.jboss.weld.environment.se.StartMain</MAIN>
+                </env>
+              </build>
+              <run>
+                <ports>
+                  <port>8080:8080</port>
+                </ports>
+              </run>
+            </image>
+          </images>
         </configuration>
       </plugin>
     </plugins>
