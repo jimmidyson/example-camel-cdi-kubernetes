@@ -3,8 +3,6 @@ package io.fabric8.examples.camelrest;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.cdi.ContextName;
 
-import javax.enterprise.context.ApplicationScoped;
-
 @ContextName("myCdiRestCamelContext")
 public class MyRoutes extends RouteBuilder {
 
