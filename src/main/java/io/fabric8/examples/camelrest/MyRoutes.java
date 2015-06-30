@@ -6,7 +6,6 @@ import org.apache.camel.cdi.ContextName;
 import javax.enterprise.context.ApplicationScoped;
 
 @ContextName("myCdiRestCamelContext")
-@ApplicationScoped
 public class MyRoutes extends RouteBuilder {
 
     @Override
